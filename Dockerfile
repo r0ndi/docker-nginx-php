@@ -11,11 +11,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -yq install --no-install-recommends a
     curl \
     git \
     make \
+    libmcrypt-dev \
     mysql-client \
     unzip \
     wget \
     zip
 RUN DEBIAN_FRONTEND=noninteractive apt-get -yq install \
+    php-pear \
     php7.2 \
     php7.2-apcu \
     php7.2-bcmath \
@@ -46,6 +48,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -yq install \
     php7.2-pgsql \
     tree \
     vim
+RUN printf "\n" | pecl install mcrypt-1.0.1
 RUN rm -rf /var/lib/apt/lists/*
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
